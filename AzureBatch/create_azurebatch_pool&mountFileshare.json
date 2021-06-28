@@ -1,0 +1,39 @@
+//노드풀 + FileStorage Mount
+{
+  "properties": {
+    "displayName": "empty_batch", //임의의 값 지정
+    "vmSize": "STANDARD_D2s_V3",
+
+    "deploymentConfiguration": {
+      "virtualMachineConfiguration": {
+
+        "imageReference": {
+          "publisher": "Canonical",
+          "offer": "UbuntuServer",
+          "sku": "18.04-lts",
+          "version": "latest"
+        },
+
+        "nodeAgentSkuId": "batch.node.ubuntu 18.04", // 위의 노드의 sku와 agentskuid를 일치 시켜야함
+        "nodePlacementConfiguration": {
+          "policy": "Regional"
+        }
+      }
+    },
+
+    //파일 스토리지 연결
+    "mountConfiguration": [
+      {
+        "azureFileShareConfiguration": {
+          "accountName": "배치계정 이름",
+          "azureFileUrl": "Filestorage url",
+          "accountKey": "storage account 엑세스키 삽입",
+          "relativeMountPath": "디스크이름 지정 ex) JH",
+
+          //연결할 드라이브 문자열 설정
+          "mountOptions": "-o vers=3.0,dir_mode=0777,file_mode=0777,sec=ntlmssp"
+        }
+      }
+    ]
+  }
+}
