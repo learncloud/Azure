@@ -18,7 +18,7 @@
       // node scale 부분
       "scaleSettings": {
         "fixedScale": {
-          "targetDedicatedNodes": "2 ",
+          "targetDedicatedNodes": "1",
           "targetLowPriorityNodes": "0",
           "nodeDeallocationOption": "TaskCompletion"
         }
