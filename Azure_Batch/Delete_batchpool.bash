@@ -1,0 +1,1 @@
+https://management.azure.com/subscriptions/{구독ID}/resourceGroups/{리소스그룹명}/providers/Microsoft.Batch/batchAccounts/{배치계정명}}/pools/{제거할 Pool명}?api-version=2021-01-01
