@@ -10,3 +10,6 @@ ex) 행성간의 거리 계산, 머신러닝, 빅데이터, 딥러닝, 차량충
 1. Terraform으로 Batch account와 Storage Account를 생성합니다
 2. REST API를 이용해 Batch 내의 Pool을 생성합니다
 3. Pool에 작업이 종료되면 DELETE API를 날려 Batch-Pool(Virtual machine)이 자동 제거 됩니다
+
+
+>create_batch_account_custompool_autoscal.json 코드 리뷰
