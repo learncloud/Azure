@@ -17,12 +17,18 @@
     },
       // node scale 부분
       "scaleSettings": {
+      // 고정 node 설정 부분
         "fixedScale": {
-          "targetDedicatedNodes": "2 ",
+          "targetDedicatedNodes": "1",
           "targetLowPriorityNodes": "0",
           "nodeDeallocationOption": "TaskCompletion"
         }
       },
+    // node 오토스케일링 설정 부분
+    //    "autoScale": {
+    //      "formula": "$samples = $ActiveTasks.GetSamplePercent(TimeInterval_Minute * 5); \n $tasks = $samples < 70 ? max(0, $ActiveTasks.GetSample(1)) : max( $ActiveTasks. \n GetSample(1), avg($ActiveTasks.GetSample(TimeInterval_Minute * 4))); \n $targetVMs = $tasks > 0 ? $tasks : max(0, $TargetDedicatedNodes / 4); \n cappedPoolSize = 20; \n $TargetDedicatedNodes = max(0, min($targetVMs, cappedPoolSize)); \n $NodeDeallocationOption = taskcompletion;",
+    //      "evaluationInterval": "PT5M"
+    //  },
     //파일 스토리지 연결 부분
     "mountConfiguration": [
       {
