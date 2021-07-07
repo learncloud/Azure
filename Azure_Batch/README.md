@@ -51,7 +51,7 @@ $targetVMs = $tasks > 0 ? $tasks : max(0, $TargetDedicatedNodes / 4);
 
 <br><br><br>
 
-* 다음 내용은 cappedPoolSize은 실행할 노드의 최대 수를 지정한 것입니다. 
+* 다음 내용은 cappedPoolSize은 실행할 노드의 최대 수를 지정한 것입니다. (JOB을 수와 관계없이 최대 생성 노드수를 1개로 지정하면 1개의  JOB이 다 돌고난후에 다음 JOB을 실행함)
   $TargetDedicatedNodes에서 $targetVMs와 cappedPoolSize 값 중 더 작은 값과 0 중에서 더 큰 값은 풀에 대한 전용 노드 수로 할당하겠다는 의미입니다. 즉 $targetVMs 값이 20미만인 경우 
   $targetVMs 수만큼 풀에 노드가 할당되고 20을 넘는 경우 cappedPoolSize 값이 20개의 노드가 할당됩니다.
   
