@@ -2,6 +2,7 @@
 {
   "properties": {
     "displayName": "jhtest",
+    //NV6sv3 - 일본 동부로 사용할 예정
     "vmSize": "STANDARD_D2s_V3",
     "deploymentConfiguration": {
       "virtualMachineConfiguration": {
