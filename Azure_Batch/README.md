@@ -70,4 +70,4 @@ $NodeDeallocationOption = taskcompletion;
 
 <br><br>
 
-* 결과적으로 autoscale이 formula는 현재 실행 대기 중인 작업이 없기 때문에 노드 수를 0개로 줄이게 됩니다. 
+* 결과적으로 autoscale이 formula는 현재 실행 대기 중인 작업이 없기 때문에 노드 수를 0개로 줄이게 됩니다
