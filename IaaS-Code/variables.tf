@@ -1,6 +1,6 @@
 #variable zone 
 #https://github.com/shan0809/Jumpstart-Terraform-0.12-on-Azure
-#foretch문
+#foretch문수정중
 
 
 variable prefix {
