@@ -46,7 +46,7 @@ resource "azurerm_network_security_group" "nsgrule" {
         source_address_prefix      = "*"
         destination_address_prefix = "*"
     }
-    
+    //멀티 nsg
     tags = {
         environment = "Terraform Demo"
     }
