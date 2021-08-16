@@ -1,15 +1,26 @@
 Batch는 Azure의 HPC 서비스입니다. 
-
+<br>
 짧은 시간안에 대규모 컴퓨팅 파워를 이용해 빠르게 계산하는 서비스
 ex) 행성간의 거리 계산, 머신러닝, 빅데이터, 딥러닝, 차량충돌테스트, 게놈프로젝트 테스트와 같은 대한 일반적이지 않은 곳에 이용됩니다.
 
-
-해당 코드는 고객사 Kubernetes에 작업 요청이 들어올시 Azure Batch를 통하여 고사양의 컴퓨터를 1대 생성한후 특정 작업이 종료되면 Batch내의 Node를 죽여 과금을 최소화 하기 위한 로직입니다
-
-<br><br><br>
-1. Terraform으로 Batch account와 Storage Account를 생성합니다
-2. REST API를 이용해 Batch 내의 Pool을 생성합니다
-3. Pool에 작업이 종료되면 DELETE API를 날려 Batch-Pool(Virtual machine)이 자동 제거 됩니다
+<br><br>
+모든 인프라는 Terraform과 REST API로 호출해 생성/제거가 가능하도록 구축되었습니다.
+End User의 Kubernetes 내 작업 요청이 들어올 시 Azure Batch 서비스로 고사양의 컴퓨터를 1대 생성하고 지정된 시간 동안 작업이 없을 경우 오토스케일링해 과금을 최소화하는 아키텍처를 구축한 경험이 있습니다.
+<br>
+◆ 사용기술
+- Azure Batch
+- REST API (Postman)
+- Terraform
+- Virtual Network
+<br>
+◆ Azure Batch를 사용한 이유
+1. 고사양 컴퓨팅 자원이 필요했고 이를 이미지화하여 사용하기에 비용 부담이 존재
+2. 서비스를 이용하고자 할 때 개발자의 최소한의 개입으로 인프라가 생기를 로직을 요구
+<br>
+◆ 본인 기여 역할
+- REST API 활용 (Postman Tool 사용)
+- Terraform 이용한 Azure Batch 서비스 구현 ( Batch Service, Storage, 리소스 그룹, 등..)
+- REST API을 이용해 Node(가상머신) 생성/제거, 오토스케일링 기능 구현
 
 <br><br><br>
 
