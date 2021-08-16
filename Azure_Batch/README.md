@@ -7,16 +7,20 @@ ex) 행성간의 거리 계산, 머신러닝, 빅데이터, 딥러닝, 차량충
 모든 인프라는 Terraform과 REST API로 호출해 생성/제거가 가능하도록 구축되었습니다.
 End User의 Kubernetes 내 작업 요청이 들어올 시 Azure Batch 서비스로 고사양의 컴퓨터를 1대 생성하고 지정된 시간 동안 작업이 없을 경우 오토스케일링해 과금을 최소화하는 아키텍처를 구축한 경험이 있습니다.
 <br>
+
 ◆ 사용기술
+
 <br>
 - Azure Batch
 - REST API (Postman)
 - Terraform
 - Virtual Network
+
 <br>
 ◆ Azure Batch를 사용한 이유
 1. 고사양 컴퓨팅 자원이 필요했고 이를 이미지화하여 사용하기에 비용 부담이 존재
 2. 서비스를 이용하고자 할 때 개발자의 최소한의 개입으로 인프라가 생기를 로직을 요구
+
 <br>
 ◆ 본인 기여 역할
 - REST API 활용 (Postman Tool 사용)
