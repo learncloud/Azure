@@ -20,12 +20,12 @@ resource "azurerm_resource_group" "li_rg" {
     name = "${var.resource_prefix}-RG"
     location = var.node_location
 }
-# resource "azurerm_virtual_network" "li_vnet" {
-#     name = "${var.resource_prefix}-vnet"
-#     resource_group_name = azurerm_resource_group.li_rg.name
-#     location = var.node_location
-#     address_space = var.node_address_space
-# }
+resource "azurerm_virtual_network" "li_vnet" {
+    name = "${var.resource_prefix}-vnet"
+    resource_group_name = azurerm_resource_group.li_rg.name
+    location = var.node_location
+    address_space = var.node_address_space
+}
 # resource "azurerm_subnet" "li_sub" {
 #     name = "${var.resource_prefix}-sub"
 #     resource_group_name = azurerm_resource_group.li_rg.name
