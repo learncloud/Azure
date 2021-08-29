@@ -17,9 +17,21 @@ provider "azurerm" {
 
 
 resource "azurerm_resource_group" "li_rg" {
-    name = "${var.resource_prefix}-RG"
+    name = "${var.resource_prefix}-RG" // 
     location = var.node_location
 }
+
+## public IP Standard를 만들려면, Dynamic으로 만들수없습니다. Global 문제로 생성이 안되고 Regional로 됩니다.
+resource "azurerm_public_ip" "li_pip" {
+    name = "${var.resource_prefix}-Pip"
+    resource_group_name = azurerm_resource_group.li_rg.name
+    location = var.node_location
+    allocation_method = "Static"
+    sku = "standard"
+    sku_tier = "Regional"
+    availability_zone = "No-Zone"
+}
+
 resource "azurerm_virtual_network" "li_vnet" {
     name = "${var.resource_prefix}-vnet"
     resource_group_name = azurerm_resource_group.li_rg.name
@@ -94,17 +106,7 @@ resource "azurerm_virtual_network" "li_vnet" {
 #         disable_password_authentication = false
 #     }
 # }
-# ## 퍼블릭 IP를 NIC에 넣어야 하는건가? 표준은Dynamic으로 설정 하면 안됨 Global 문제로 생성이 안되고 Regional로 됨
-# ## waiting for creation/update of Public Ip Address: (Name "LB-Pip" / Resource Group "linuxnode-RG"): Code="VipAllocationFailedWithVipRangeNotFound" Message="No matching VIP range. Please contact support for more details." Details=[]
-# resource "azurerm_public_ip" "li_pip" {
-#     name = "LB-Pip"
-#     resource_group_name = azurerm_resource_group.li_rg.name
-#     location = var.node_location
-#     allocation_method = "Static"
-#     sku = "standard"
-#     sku_tier = "Regional"
-#     availability_zone = "No-Zone"
-# }
+
 
 # resource "azurerm_lb" "li_lb" {
 #     resource_group_name = azurerm_resource_group.li_rg.name
