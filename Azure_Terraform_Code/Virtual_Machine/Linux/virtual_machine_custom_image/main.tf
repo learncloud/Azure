@@ -177,5 +177,5 @@ resource "azurerm_network_interface_nat_rule_association" "li_natrule_associatio
     
 }
 
-##A resource with the ID "/subscriptions/801d5b45-4c84-4353-a1ce-213384a016aa/resourceGroups/linuxnode-RG/providers/Microsoft.Network/publicIPAddresses/LB-Pip" already exists - to be managed via Terraform this resource needs to be imported into the State. Please see the resource documentation for "azurerm_public_ip" for more information.
+
 ##커스텀 이미지로 VM 생성하기
