@@ -159,7 +159,7 @@ resource "azurerm_network_interface_backend_address_pool_association" "li_backPo
 ## 로드밸런서 nat 룰 생성
 resource "azurerm_lb_nat_rule" "li_nat_rule" {
     //Inbound nat rule 숫자와 vm connect 숫자가 일치하지 않아도 문제없이 생성이됨
-    count = var.node_counts //Inbount NAT만 1000대 생성함
+    count = var.node_counts //Inbount NAT만 5대 생성함
     resource_group_name = azurerm_resource_group.li_rg.name
     loadbalancer_id = azurerm_lb.li_lb.id
     name = "${var.resource_prefix}-${format("%02d",count.index)}"
