@@ -15,9 +15,21 @@ variable "node_count" {
     type = number
     // node_count 숫자는 terraform.tfvars에 선언되어있음
 }
+
+variable "node_counts"{
+    type = number
+}
+
 variable "vhd_uri" {
     type = string
 }
 
+variable "username"{
+    type = string
+}
+
+variable "userpwd"{
+    type = string
+}
 
 
