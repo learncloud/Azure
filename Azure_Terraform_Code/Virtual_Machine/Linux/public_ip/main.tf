@@ -17,7 +17,7 @@ provider "azurerm" {
 
 
 resource "azurerm_resource_group" "li_rg" {
-    name = "${var.resource_prefix}-RG" // 
+    name = "${var.resource_prefix}-RG" 
     location = var.node_location
 }
 
