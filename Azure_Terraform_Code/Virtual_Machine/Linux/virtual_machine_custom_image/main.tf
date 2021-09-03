@@ -1,3 +1,5 @@
+# 1000대를 생성하면서 에러나는데 어디서 에러나는지 모르니까 인프라 전부 다 쪼개야할듯!!
+# /subscriptions/내pickcl구독id/resourceGroups/LinuxVM-RG/providers/Microsoft.Compute/galleries/linux_image/images/wclinux/versions/1.0.0
 # We strongly recommend using the required_providers block to set the
 # Azure Provider source and version being used
 terraform {
