@@ -38,18 +38,18 @@ resource "azurerm_subnet" "li_sub" {
     virtual_network_name = azurerm_virtual_network.li_vnet.name
     address_prefix = var.node_address_prefix
 }
-## 네트워크 인터페이스 생성
-resource "azurerm_network_interface" "li_nic" {
-    count = var.node_count
-    name = "${var.resource_prefix}-${format("%04d",count.index)}-NIC" // ${format()} 형식은 숫자(count)를 10진수로 변경한다는 뜻  ,count.index는 상수 증가 1씩 증가 한다는 의미
-    location = var.node_location
-    resource_group_name = azurerm_resource_group.li_rg.name
-    ip_configuration { //private IP 정의
-        name = "internal"
-        subnet_id = azurerm_subnet.li_sub.id
-        private_ip_address_allocation = "Dynamic"
-    }
-}
+# ## 네트워크 인터페이스 생성
+# resource "azurerm_network_interface" "li_nic" {
+#     count = var.node_count
+#     name = "${var.resource_prefix}-${format("%04d",count.index)}-NIC" // ${format()} 형식은 숫자(count)를 10진수로 변경한다는 뜻  ,count.index는 상수 증가 1씩 증가 한다는 의미
+#     location = var.node_location
+#     resource_group_name = azurerm_resource_group.li_rg.name
+#     ip_configuration { //private IP 정의
+#         name = "internal"
+#         subnet_id = azurerm_subnet.li_sub.id
+#         private_ip_address_allocation = "Dynamic"
+#     }
+# }
 ## 22, 80 NSG 생성
 resource "azurerm_network_security_group" "li_nsg" {
     name = "${var.resource_prefix}-nsg"
@@ -85,11 +85,11 @@ resource "azurerm_subnet_network_security_group_association" "li_subnet_nsg_asso
     network_security_group_id = azurerm_network_security_group.li_nsg.id
 }
 
-# ## NIC에 NSG적용 // Nic 개수가 다수일경우 어떤 nic에 nsg를 적용해야하는지 모르기때문에 에러가 남, 즉 nic에 nsg를 붙이고 싶으면 nic를 1개만 만들던지해야함
-# resource "azurerm_network_interface_security_group_association" "li_nic_nsg_association" {
-#   network_interface_id      = azurerm_network_interface.li_nic.id
-#   network_security_group_id = azurerm_network_security_group.li_nsg.id
-# }
+## ## NIC에 NSG적용 // Nic 개수가 다수일경우 어떤 nic에 nsg를 적용해야하는지 모르기때문에 에러가 남, 즉 nic에 nsg를 붙이고 싶으면 nic를 1개만 만들던지해야함
+## resource "azurerm_network_interface_security_group_association" "li_nic_nsg_association" {
+##   network_interface_id      = azurerm_network_interface.li_nic.id
+##   network_security_group_id = azurerm_network_security_group.li_nsg.id
+## }
 
 
 
@@ -102,7 +102,7 @@ resource "azurerm_virtual_machine" "li-vm" {
     network_interface_ids = [element(azurerm_network_interface.li_nic.*.id, count.index)]
     vm_size = "Standard_B1s"
     delete_os_disk_on_termination = true
-    storage_image_reference {
+    storage_image_reference { //가상머신 custom image 지정하는곳
         id = var.vhd_uri
     }
     
@@ -124,16 +124,7 @@ resource "azurerm_virtual_machine" "li-vm" {
         disable_password_authentication = false
     }
 }
-## public IP Standard를 만들려면, Dynamic으로 만들수없습니다. Global 문제로 생성이 안되고 Regional로 됩니다.
-resource "azurerm_public_ip" "li_pip" {
-    name = "LB-Pip"
-    resource_group_name = azurerm_resource_group.li_rg.name
-    location = var.node_location
-    allocation_method = "Static"
-    sku = "standard"
-    sku_tier = "Regional"
-    availability_zone = "No-Zone"
-}
+
 ## 로드밸런서 생성
 resource "azurerm_lb" "li_lb" {
     resource_group_name = azurerm_resource_group.li_rg.name
@@ -161,7 +152,11 @@ resource "azurerm_network_interface_backend_address_pool_association" "li_backPo
 ## 로드밸런서 nat 룰 생성
 resource "azurerm_lb_nat_rule" "li_nat_rule" {
     //Inbound nat rule 숫자와 vm connect 숫자가 일치하지 않아도 문제없이 생성이됨
+<<<<<<< HEAD
+    count = var.node_count
+=======
     count = var.node_counts //Inbount NAT만 5대 생성함
+>>>>>>> a17177aa64b08747ed3a8e0b6fb318d1542590be
     resource_group_name = azurerm_resource_group.li_rg.name
     loadbalancer_id = azurerm_lb.li_lb.id
     name = "${var.resource_prefix}-${format("%02d",count.index)}"
