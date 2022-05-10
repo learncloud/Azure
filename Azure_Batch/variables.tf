@@ -7,7 +7,7 @@ variable resourcename  {
 variable location  {
   type        = string
   default     = "korea central"
-  description = "resourcename-example"
+  description = "resourcename-examples"
 }
 
 variable tags  {
